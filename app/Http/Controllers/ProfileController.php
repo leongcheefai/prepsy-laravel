@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuisine;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,8 +64,14 @@ class ProfileController extends Controller
      */
     public function preferences(): View
     {
+        $cuisines = Cuisine::query()
+            ->pluck('display_name', 'id')
+            ->toArray();
+
         return view('profile.preferences', [
             'user' => Auth::user(),
+            'cuisines' => $cuisines,
+            'userCuisines' => Auth::user()->cuisines ?? null,
         ]);
     }
 }

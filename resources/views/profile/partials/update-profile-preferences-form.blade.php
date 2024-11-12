@@ -19,7 +19,7 @@
 
         <div>
             <x-input-label for="cuisines" :value="__('Cuisine Preferences')" />
-            <x-text-input id="cuisines" name="cuisines" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="cuisines" />
+            <x-multi-drop-down :options="$cuisines" :selected="$userCuisines" name="cuisines" id="cuisines" placeholder="Select your cuisine preferences" />
             <x-input-error class="mt-2" :messages="$errors->get('cuisines')" />
         </div>
 

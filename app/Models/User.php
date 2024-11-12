@@ -45,4 +45,9 @@ class User extends Authenticatable
             'preferences' => 'array',
         ];
     }
+
+    public function cuisines()
+    {
+        return $this->hasManyThrough(Cuisine::class, UserCuisine::class, 'user_id', 'id', 'id', 'cuisine_id');
+    }
 }
